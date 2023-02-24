@@ -14,8 +14,6 @@
 ### Association
 
 * has_many :items
-* has_many :purchases
-* has_many :shipping addresses
 　
 ## items table
 
@@ -24,7 +22,7 @@
 | nickname                            | references | null: false, foreign_key: true |   
 | items name                          | string     | null: false                    | 
 | image                               | string     | null: false                    | 
-| state                               | string     | null: false                    | 
+| states                              | string     | null: false                    | 
 | postage                             | string     | null: false                    | 
 | region                              | string     | null: false                    | 
 | shipping_date                       | string     | null: false                    |
@@ -35,8 +33,7 @@
 ### Association
 
 - belongs_to :user
-- has_many :purchases
-- has_many :shipping addresses
+* has_many :purchases
 
 ## purchases table
 
@@ -50,8 +47,8 @@
 
 ### Association
 
-- belongs_to :user
 - belongs_to :items
+* has_many :shipping address
 
 ## shipping addresses table
 
@@ -67,5 +64,5 @@
 
 ### Association
 
+- belongs_to :purchases
 - belongs_to :user
-- belongs_to :items
