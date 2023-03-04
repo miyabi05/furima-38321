@@ -48,9 +48,9 @@
 
 - belongs_to :item
 - belongs_to :user
-* has_one :shipping address
+* has_one :shipping_address
 
-## shipping addresses table
+## shipping_addresses table
 
 | Column          | Type       | Options                        |
 |-----------------|------------|--------------------------------|
@@ -60,7 +60,7 @@
 | address         | string     | null: false                    | 
 | building_name   | string     |                                | 
 | phone_number    | string     | null: false                    |
-| purchase_history| references | null: false, foreign_key: true |
+| purchase        | references | null: false, foreign_key: true |
 
 ### Association
 
