@@ -30,7 +30,7 @@
 | category_id                         | integer    | null: false                    |
 | price                               | integer    | null: false                    |
 | explain                             | text       | null: false                    |   
-| user_id                             | integer    | null: false, foreign_key:true  |                  
+| user                                | references | null: false, foreign_key:true  |                  
 
 ### Association
 
@@ -52,14 +52,15 @@
 
 ## shipping addresses table
 
-| Column      | Type       | Options                        |
-|-------------|------------|--------------------------------|
-| post_code   | string     | null: false                    |
-| region_id   | integer    | null: false                    |
-| local_city  | string     | null: false                    |
-| city        | string     | null: false                    | 
-| address     | string     | null: false                    |  
-| phone_number| string     |                                |
+| Column          | Type       | Options                        |
+|-----------------|------------|--------------------------------|
+| post_code       | string     | null: false                    |
+| region_id       | integer    | null: false                    |
+| city            | string     | null: false                    | 
+| address         | string     | null: false                    | 
+| building_name   | string     |                                | 
+| phone_number    | string     | null: false                    |
+| purchase_history| references | null: false, foreign_key: true |
 
 ### Association
 
