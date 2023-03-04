@@ -1,71 +1,67 @@
 # DB 設計
 ## users table
 
-| Column             | Type                | Options                   |
-|--------------------|---------------------|---------------------------|
-| nickname           | string              | null: false               |
-| email              | string              | null: false, unique: true |
-| encrypted_password | string              | null: false               |
-| name               | string              | null: false               |
-| kana               | string              | null: false               | 
-| birthday           | string              | null: false               |
+| Column             | Type                | Options                        |
+|--------------------|---------------------|--------------------------------|
+| nickname           | string              | null: false                    |
+| email              | string              | null: false, unique: true      |
+| encrypted_password | string              | null: false                    |
+| last_name          | string              | null: false                    |
+| first_name         | string              | null: false                    | 
+| last_name_kana     | string              | null: false                    |
+| first_name_kana    | string              | null: false                    |
+| birthday           | date                | null: false                    |
 
 
 ### Association
 
 * has_many :items
 * has_many :purchases
-* has_many :shipping addresses
 　
 ## items table
 
 | Column                              | Type       | Options                        |
-|-------------------------------------|------------|--------------------------------|
-| nickname                            | references | null: false, foreign_key: true |   
-| items name                          | string     | null: false                    | 
-| image                               | string     | null: false                    | 
-| state                               | string     | null: false                    | 
-| postage                             | string     | null: false                    | 
-| region                              | string     | null: false                    | 
-| shipping_date                       | string     | null: false                    |
-| category                            | string     | null: false                    |
-| price                               | string     | null: false                    |
+|-------------------------------------|------------|--------------------------------|   
+| items_name                          | string     | null: false                    |  
+| state_id                            | integer    | null: false                    | 
+| postage_id                          | integer    | null: false                    | 
+| region_id                           | integer    | null: false                    | 
+| shipping_date_id                    | integer    | null: false                    |
+| category_id                         | integer    | null: false                    |
+| price                               | integer    | null: false                    |
 | explain                             | text       | null: false                    |   
+| user                                | references | null: false, foreign_key:true  |                  
 
 ### Association
 
 - belongs_to :user
-- has_many :purchases
-- has_many :shipping addresses
+* has_one :purchase
 
 ## purchases table
 
 | Column        | Type       | Options                        |
 |---------------|------------|--------------------------------|
-| card name     | string     | null: false                    |
-| card type     | string     | null: false                    |
-| card number   | string     | null: false                    |
-| expire        | string     | null: false                    |
-| security code | string     | null: false                    |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :item
 - belongs_to :user
-- belongs_to :items
+* has_one :shipping_address
 
-## shipping addresses table
+## shipping_addresses table
 
-| Column      | Type       | Options                        |
-|-------------|------------|--------------------------------|
-| name        | references | null: false, foreign_key: true |
-| post code   | string     | null: false                    |
-| state       | string     | null: false                    |
-| local city  | string     | null: false                    |
-| city        | string     | null: false                    | 
-| address 1   | string     | null: false                    |  
-| address 2   | string     | null: false                    | 
+| Column          | Type       | Options                        |
+|-----------------|------------|--------------------------------|
+| post_code       | string     | null: false                    |
+| region_id       | integer    | null: false                    |
+| city            | string     | null: false                    | 
+| address         | string     | null: false                    | 
+| building_name   | string     |                                | 
+| phone_number    | string     | null: false                    |
+| purchase        | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- belongs_to :items
+- belongs_to :purchase
